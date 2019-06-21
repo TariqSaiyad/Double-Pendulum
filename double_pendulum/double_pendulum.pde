@@ -37,68 +37,7 @@ PGraphics canvas;
 
 void setup() {
   cp5 = new ControlP5(this);
-
-
-  // add a vertical slider
-  cp5.addSlider("mass1")
-    .setPosition(10, 25)
-    .setRange(10, 100).setWidth(200)
-    .setValue(20);
-
-  // reposition the Label for controller 'slider'
-  cp5.getController("mass1").getValueLabel().align(ControlP5.LEFT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
-  cp5.getController("mass1").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
-
-
-  cp5.addSlider("mass2")
-    .setPosition(10, 50)
-    .setRange(10, 100)
-    .setWidth(200)
-    .setValue(15);
-
-  // reposition the Label for controller 'slider'
-  cp5.getController("mass2").getValueLabel().align(ControlP5.LEFT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
-  cp5.getController("mass2").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
-
-
-  cp5.addSlider("r1")
-    .setPosition(10, 75)
-    .setRange(10, 200)
-    .setWidth(200)
-    .setValue(100);
-
-  // reposition the Label for controller 'slider'
-  cp5.getController("r1").setLabel("Length 1");
-  // reposition the Label for controller 'slider'
-  cp5.getController("r1").getValueLabel().align(ControlP5.LEFT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
-  cp5.getController("r1").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
-
-
-
-  cp5.addSlider("r2")
-    .setPosition(10, 100)
-    .setRange(10, 200)
-    .setWidth(200)
-    .setValue(100);
-
-  // reposition the Label for controller 'slider'
-  cp5.getController("r2").setLabel("Length 2");
-  // reposition the Label for controller 'slider'
-  cp5.getController("r2").getValueLabel().align(ControlP5.LEFT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
-  cp5.getController("r2").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
-
-
-
-  // add a vertical slider
-  cp5.addSlider("gravity")
-    .setPosition(10, 125)
-    .setRange(0, 10)
-    .setWidth(200)
-    .setValue(0.1);
-
-  // reposition the Label for controller 'slider'
-  cp5.getController("gravity").getValueLabel().align(ControlP5.LEFT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
-  cp5.getController("gravity").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
+  addSliders();
 
   size(800, 800);
 
@@ -142,6 +81,11 @@ void draw() {
   //change angles by velocity.
   a1+=a1_v;
   a2+=a2_v;
+  
+  //add dampening.
+  a1_v *= (0.999* 1/gravity);
+  a2_v *= (0.999* 1/gravity);
+  
 
 
 
@@ -181,4 +125,70 @@ void calculateAngles() {
 
 
   a2_a=(num1*(num2+num3+num4) )/ den;
+}
+
+
+void addSliders(){
+  
+
+  // add a vertical slider
+  cp5.addSlider("mass1")
+    .setPosition(10, 25)
+    .setRange(10, 100).setWidth(200)
+    .setValue(20);
+
+  // reposition the Label for controller 'slider'
+  cp5.getController("mass1").getValueLabel().align(ControlP5.LEFT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
+  cp5.getController("mass1").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
+
+
+  cp5.addSlider("mass2")
+    .setPosition(10, 50)
+    .setRange(10, 100)
+    .setWidth(200)
+    .setValue(15);
+
+  // reposition the Label for controller 'slider'
+  cp5.getController("mass2").getValueLabel().align(ControlP5.LEFT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
+  cp5.getController("mass2").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
+
+
+  cp5.addSlider("r1")
+    .setPosition(10, 75)
+    .setRange(10, 200)
+    .setWidth(200)
+    .setValue(100);
+
+  // reposition the Label for controller 'slider'
+  cp5.getController("r1").setLabel("Length 1");
+  // reposition the Label for controller 'slider'
+  cp5.getController("r1").getValueLabel().align(ControlP5.LEFT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
+  cp5.getController("r1").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
+
+
+
+  cp5.addSlider("r2")
+    .setPosition(10, 100)
+    .setRange(10, 200)
+    .setWidth(200)
+    .setValue(120);
+
+  // reposition the Label for controller 'slider'
+  cp5.getController("r2").setLabel("Length 2");
+  // reposition the Label for controller 'slider'
+  cp5.getController("r2").getValueLabel().align(ControlP5.LEFT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
+  cp5.getController("r2").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
+
+
+
+  // add a vertical slider
+  cp5.addSlider("gravity")
+    .setPosition(10, 125)
+    .setRange(0, 10)
+    .setWidth(200)
+    .setValue(1);
+
+  // reposition the Label for controller 'slider'
+  cp5.getController("gravity").getValueLabel().align(ControlP5.LEFT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
+  cp5.getController("gravity").getCaptionLabel().align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE).setPaddingX(0);
 }
