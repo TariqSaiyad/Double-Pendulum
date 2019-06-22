@@ -83,17 +83,21 @@ void draw() {
   a2+=a2_v;
   
   //add dampening.
-  a1_v *= (0.999* 1/gravity);
-  a2_v *= (0.999* 1/gravity);
+  a1_v *= (0.999);
+  a2_v *= (0.999);
   
 
 
 
   //draw the trail lines left behind by the pendulum.
+  float r = map(a1,-PI/2,PI/2, 0,255);
+  float g = map(a2,-PI/2,PI/2, 0,255);
+
+  
   canvas.beginDraw();
   canvas.translate(400, 250);
   canvas.strokeWeight(4);
-  canvas.stroke(255);
+  canvas.stroke(r+25,g+25,0);
   canvas.point(x2, y2);
   canvas.endDraw();
 }
